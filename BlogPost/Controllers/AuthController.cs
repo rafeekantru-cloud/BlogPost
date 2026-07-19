@@ -105,5 +105,41 @@ namespace BlogPost.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Post");
         }
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    if (!await _roleManager.RoleExistsAsync("User"))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("User"));
+                    }
+
+                    await _userManager.AddToRoleAsync(user, "User");
+                    await _signInManager.SignInAsync(user, true);
+                    return RedirectToAction("Index", "Post");
+                }
+                return View(model);
+            }
+            return View(model);
+        }
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+
+
+
+
+
+
     }
 }
