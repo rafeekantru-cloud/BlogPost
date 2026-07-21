@@ -1,15 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@* <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BlogPost</title>
+    <title>@ViewData["Title"] - BlogPost</title> *@
    @*  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
-    <link rel="stylesheet" href="~/lib/bootswatch/bootstrap.min.css" />
+   @*  <link rel="stylesheet" href="~/lib/bootswatch/bootstrap.min.css" /> *@
  @*    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
   @*   <link rel="stylesheet" href="~/BlogPost.styles.css" asp-append-version="true" /> *@
 
-</head>
+@* </head>
 <body>
     <header>
         @Html.Partial("_Navbar.cshtml");
@@ -26,8 +26,49 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
  @*    <script src="~/js/site.js" asp-append-version="true"></script> *@
-    @await RenderSectionAsync("Scripts", required: false)
+@*     @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html> *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>@ViewData["Title"] - Legal Aid</title>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+</head>
+
+<body>
+
+    @await Html.PartialAsync("Navbar1")
+
+    <div class="wrapper">
+
+        @await Html.PartialAsync("Sidebar")
+
+        <main class="content">
+
+            @RenderBody()
+
+        </main>
+
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js"></script>
+
+    @await RenderSectionAsync("Scripts", false)
+
 </body>
 </html>

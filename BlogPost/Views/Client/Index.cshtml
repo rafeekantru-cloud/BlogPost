@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Client";
+}
+
+<div class="container mt-4">
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <label class="form-label">
+
+                Client
+
+            </label>
+
+            <div class="input-group">
+
+                <input type="hidden"
+                       id="ClientId" />
+
+                <input type="text"
+                       id="ClientName"
+                       class="form-control"
+                       readonly />
+
+                <button class="btn btn-primary"
+                        id="btnSearch">
+
+                    🔍
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="popupContainer"></div>
+
+@section Scripts {
+
+    <script>
+
+        $("#btnSearch").click(function () {
+
+            $("#popupContainer").load("/Client/Search", function () {
+
+                var modal = new bootstrap.Modal(
+                    document.getElementById("clientModal"));
+
+                modal.show();
+
+            });
+
+        });
+
+    </script>
+
+}

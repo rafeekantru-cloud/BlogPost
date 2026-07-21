@@ -2,3 +2,20 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    document.getElementById("menu-toggle")
+        .addEventListener("click", function () {
+
+            document
+                .getElementById("sidebar")
+                .classList.toggle("hide");
+
+        });
+
+});
+
+
+

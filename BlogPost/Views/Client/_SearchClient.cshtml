@@ -1,0 +1,101 @@
+﻿@model IEnumerable<ClientVM>
+
+<div class="modal fade"
+     id="clientModal">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5>
+
+                    Search Client
+
+                </h5>
+
+                <button class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <input class="form-control mb-3"
+                       id="txtSearch"
+                       placeholder="Search Client" />
+
+                <table class="table table-bordered">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Name</th>
+
+                            <th>Phone</th>
+
+                            <th></th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>@item.Id</td>
+
+                                <td>@item.Name</td>
+
+                                <td>@item.Phone</td>
+
+                                <td>
+
+                                    <button class="btn btn-success btnSelect"
+                                            data-id="@item.Id"
+                                            data-name="@item.Name">
+
+                                        Select
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    $(".btnSelect").click(function () {
+
+        $("#ClientId").val($(this).data("id"));
+
+        $("#ClientName").val($(this).data("name"));
+
+        bootstrap.Modal
+            .getInstance(document.getElementById("clientModal"))
+            .hide();
+
+    });
+
+</script>
