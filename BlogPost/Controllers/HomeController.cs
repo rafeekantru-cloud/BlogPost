@@ -6,15 +6,32 @@ namespace BlogPost.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         public IActionResult Index()
         {
+            try
+            {
+                int x = 10;
+                int y = 0;
+
+                var result = x / y;
+            }
+            catch (Exception ex)
+            {
+               // _logger.LogError(ex, "Error occurred in Home Index.");
+            }
+
             return View();
         }
 
