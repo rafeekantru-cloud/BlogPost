@@ -346,19 +346,78 @@
 
 @section Scripts {
 
-$(function () {
+    <script>
 
-    $("#btnSearchClient").click(function () {
+        $(function () {
 
-        var modal =
-            new bootstrap.Modal(
-                document.getElementById("clientModal"));
+            //Open popup
+            $("#btnSearchClient").click(function () {
 
-        modal.show();
+                loadClients("");
 
-    });
+                var modal = new bootstrap.Modal(
+                    document.getElementById("clientModal"));
 
-});
+                modal.show();
+            });
+
+            //Search while typing
+            $("#txtSearch").on("keyup", function () {
+
+                loadClients($(this).val());
+
+            });
+
+            //Select button
+            $(document).on("click", ".btnSelect", function () {
+
+                $("#ClientId").val($(this).data("id"));
+
+                $("#ClientName").val($(this).data("name"));
+
+                bootstrap.Modal.getInstance(
+                    document.getElementById("clientModal"))
+                    .hide();
+
+            });
+
+        });
+
+
+        function loadClients(search) {
+
+            $.get("/Client/SearchClients",
+                { search: search },
+                function (data) {
+
+                    var rows = "";
+
+                    $.each(data, function (i, client) {
+
+                        rows += `
+                            <tr>
+                                <td>${client.id}</td>
+                                <td>${client.name}</td>
+                                <td>${client.phone}</td>
+                                <td>
+                                    <button class="btn btn-success btnSelect"
+                                            data-id="${client.id}"
+                                            data-name="${client.name}">
+                                        Select
+                                    </button>
+                                </td>
+                            </tr>`;
+
+                    });
+
+                    $("#clientTableBody").html(rows);
+
+                });
+
+        }
+
+    </script>
+
 }
 
 
